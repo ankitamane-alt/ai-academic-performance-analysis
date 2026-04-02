@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Performance Analyzer</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 90%;
+        }
+        button {
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🎓 AI-Based Academic Performance Analyzer</h2>
+
+    <form action="/predict" method="post">
+        <input type="text" name="attendance" placeholder="Attendance (%)" required><br>
+        <input type="text" name="study_hours" placeholder="Study Hours" required><br>
+        <input type="text" name="marks" placeholder="Internal Marks" required><br>
+        <input type="text" name="assignments" placeholder="Assignments (%)" required><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h3>📊 Predicted Score: {{ prediction }}</h3>
+        <h3>Status: {{ status }}</h3>
+
+        <h3>💡 Suggestions:</h3>
+        <ul>
+            {% for tip in tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>📈 Performance Graph:</h3>
+        <img src="/static/graph.png" width="400">
+    {% endif %}
+
+</body>
+</html>
